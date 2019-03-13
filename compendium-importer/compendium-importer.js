@@ -1,14 +1,14 @@
 /**
  * Compendium Importer
  * @author Juan Sedano <Paul Endri>
- * @version 0.0.1
+ * @version 0.0.5
  */
 
 class CompendiumImporter {
     constructor() {
         // Register hooks
         this.hookRenderCompendium();
-        this.hookRenderDialog()
+        this.hookRenderDialog();
     }
 
     hookRenderDialog() {
@@ -32,10 +32,10 @@ class CompendiumImporter {
                 .on('click', (e) => {
                     e.preventDefault();
 
-                    const $container = $("<div class='compendium-importer-container'></div>")
+                    const $container = $("<div class='compendium-importer-container'></div>");
                     const $input = $(`<input type="file" accept="application/json" class="import-compendium" />`);
 
-                    $container.html($input)
+                    $container.html($input);
 
                     $dialog
                         .find('.window-content')
@@ -43,7 +43,7 @@ class CompendiumImporter {
 
                     $input
                         .change((e) => {
-                            $container.html("Importing, please wait")
+                            $container.html("Importing, please wait");
 
                             try {
                                 if (e.target.files.length > 0) {
@@ -53,8 +53,9 @@ class CompendiumImporter {
     
                                     reader.onload = async (e) => {
                                         const result = await this.importFile(JSON.parse(e.target.result));
-                                        console.log('testing', result)
-                                        $container.append(result)
+
+                                        $container.append(result);
+                                        game.initializeUI();
                                     }
     
                                     reader.readAsText(file);
@@ -118,13 +119,11 @@ class CompendiumImporter {
             game.socket.emit('compendiumCreate', json.metadata, async (metadata) => {
                 const entityClass = entity_map[metadata.entity];
                 const importedCompendium = new Compendium(metadata);
-                console.log('testing', metadata, json);
+
                 json.db.forEach((entity) => {
-                    console.log(entity);
                     importedCompendium.importEntity(new entityClass(entity));
                 });
 
-                console.log(importedCompendium)
                 game.packs.push(importedCompendium);
 
                 resolve(`<div class='compendium-importer-success'>Successfully imported ${metadata.name}</div>`)

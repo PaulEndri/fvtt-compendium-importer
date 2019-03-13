@@ -10,3 +10,8 @@ To install a module, follow these instructions:
 2. Extract the included folder to `public/modules` in your Foundry Virtual Tabletop installation folder.
 3. Restart Foundry Virtual Tabletop. 
 
+## How to use
+
+To use this, you'll notice an `export` button next to the `close` icon when viewing a compendium, this'll download a specific `.json` file.
+
+That .json file can then be uploaded, shared, etc and then imported by going to create a new compendium, and clicking the new `import compendium` buttons.

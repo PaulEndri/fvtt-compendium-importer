@@ -2,7 +2,7 @@
   "name": "compendium-importer",
   "title": "Compendium Importer",
   "description": "Adds the ability to import/export compendiums.",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "author": "Juan Sedano (Paul Endri)",
   "scripts": ["./compendium-importer.js"],
   "styles": ["./compendium-importer.css"],
